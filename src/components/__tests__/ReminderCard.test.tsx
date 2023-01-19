@@ -29,17 +29,7 @@ describe('<ReminderCard />', () => {
     const { store } = renderWithProviders(<ReminderCard {...reminderProps} />, {
       preloadedState: {
         reminders: {
-          reminders: [
-            {
-              id: '128',
-              name: 'Buy milk',
-              when: '01/02/2023',
-              who: 'Cartman',
-              createdBy: 'Hari',
-              createdAt: new Date().getTime().toString(),
-              done: false,
-            },
-          ],
+          reminders: [reminderProps],
         },
       },
     });
