@@ -67,6 +67,16 @@ const TabsGroup = styled.div({
   justifyContent: 'center',
   borderRadius: '5px',
   paddingBottom: '20px',
+
+  '> button:nth-of-type(1)': {
+    borderBottomLeftRadius: '5px',
+    borderTopLeftRadius: '5px',
+  },
+
+  '> button:nth-of-type(3)': {
+    borderTopRightRadius: '5px',
+    borderBottomRightRadius: '5px',
+  },
 });
 
 export default Tabs;

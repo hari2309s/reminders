@@ -1,10 +1,48 @@
 import styled from '@emotion/styled';
 import * as React from 'react';
+import { TabTypes } from '../constants';
+import {
+  Reminder,
+  selectReminders,
+} from '../store/features/reminders/remindersSlice';
+import { selectView } from '../store/features/ui/uiSlice';
+import { useAppSelector } from '../store/hooks';
+import CreateModal from './CreateModal';
+import NoDataAvailable from './NoDataAvailable';
+import ReminderCard from './ReminderCard';
 import Tabs from './Tabs';
 import create from '../assets/create.png';
 
 const Dashboard = () => {
+  const currentView = useAppSelector(selectView);
+  const reminders = useAppSelector(selectReminders);
+
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
+
+  const [filteredReminders, setFilteredReminders] = React.useState<Reminder[]>(
+    []
+  );
+
+  React.useEffect(() => {
+    let filtered;
+
+    switch (currentView) {
+      case TabTypes.done:
+        filtered = reminders.filter(
+          (reminder: Reminder) => reminder.done === true
+        );
+        break;
+      case TabTypes.pending:
+        filtered = reminders.filter(
+          (reminder: Reminder) => reminder.done === false
+        );
+        break;
+      case TabTypes.all:
+      default:
+        filtered = reminders;
+    }
+    setFilteredReminders(filtered);
+  }, [currentView, reminders]);
 
   return (
     <Container>
@@ -18,6 +56,16 @@ const Dashboard = () => {
           Create
         </CreateButton>
       </Wrapper>
+      {reminders.length > 0 ? (
+        <Reminders>
+          {filteredReminders.map((reminder: Reminder) => (
+            <ReminderCard key={reminder.id} {...reminder} />
+          ))}
+        </Reminders>
+      ) : (
+        <NoDataAvailable />
+      )}
+      {isModalOpen && <CreateModal setIsOpen={setIsModalOpen} />}
     </Container>
   );
 };
@@ -35,14 +83,21 @@ const Wrapper = styled.div({
   justifyContent: 'center',
 });
 
+const Reminders = styled.div({
+  marginTop: '30px',
+  display: 'grid',
+  gridTemplateRows: '18rem 1fr',
+  gridTemplateColumns: '21rem 1fr',
+});
+
 const CreateButton = styled.button({
   height: '40px',
   width: '150px',
-  backgroundColor: '#a99276',
+  backgroundColor: '#615344',
   color: 'white',
   border: 0,
   outline: 0,
-  borderRadius: '2px',
+  borderRadius: '5px',
   cursor: 'pointer',
   fontSize: '18px',
   margin: '3px 0 0 20px',
