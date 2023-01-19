@@ -34,6 +34,7 @@ const Tabs = () => {
           active={currentView === type}
           onClick={() => dispatch(changeView(type as TabTypes))}
           data-testid={`${type}-option`}
+          aria-label={type}
         >
           <img src={getIcon(type as TabTypes)} alt={type} />
           {type}

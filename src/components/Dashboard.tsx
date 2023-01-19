@@ -51,6 +51,7 @@ const Dashboard = () => {
         <CreateButton
           onClick={() => setIsModalOpen(true)}
           data-testid="create-button"
+          aria-label="Create"
         >
           <img src={create} alt="create" />
           Create

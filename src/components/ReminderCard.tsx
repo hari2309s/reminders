@@ -10,7 +10,7 @@ import { useAppDispatch } from '../store/hooks';
 type ReminderCardProps = Reminder;
 
 const ReminderCard = (props: ReminderCardProps) => {
-  const { id, name, when, who, createdAt, createdBy, done } = props;
+  const { id, name, when, who, createdBy, done } = props;
 
   const dispatch = useAppDispatch();
 
@@ -27,8 +27,8 @@ const ReminderCard = (props: ReminderCardProps) => {
       <Title data-testid="reminder-name">{name}</Title>
       <span>{when}</span>
       <span>{who}</span>
-      <span>{createdAt}</span>
       <span>{createdBy}</span>
+      <Divider />
       <Actions done={done}>
         <button
           onClick={handleDelete}
@@ -48,7 +48,7 @@ const ReminderCard = (props: ReminderCardProps) => {
 const Card = styled.div<{ done: boolean }>((props) => ({
   padding: '20px',
   borderRadius: '5px',
-  backgroundColor: props.done ? 'grey' : '#F2D0A9',
+  backgroundColor: props.done ? 'rgba(97,83,68,0.7)' : '#F2D0A9',
   display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
@@ -71,6 +71,11 @@ const Title = styled.span({
   fontSize: 25,
 });
 
+const Divider = styled.div({
+  margin: '10px 0',
+  borderTop: '2px solid #796855',
+});
+
 const Actions = styled.div<{ done: boolean }>((props) => ({
   display: 'flex',
 
@@ -90,11 +95,11 @@ const Actions = styled.div<{ done: boolean }>((props) => ({
   },
 
   '> button:nth-of-type(1)': {
-    backgroundColor: 'red',
+    backgroundColor: props.done ? 'rgba(255,0,0,0.5)' : 'red',
   },
 
   '> button:nth-of-type(2)': {
-    backgroundColor: 'green',
+    backgroundColor: props.done ? 'rgba(0,128,0,0.5)' : 'green',
   },
 }));
 
