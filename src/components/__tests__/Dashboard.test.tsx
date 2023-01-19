@@ -35,6 +35,7 @@ describe('<Dashboard />', () => {
         reminders: {
           reminders: [
             {
+              id: '128',
               name: 'Buy milk',
               when: '01/02/2023',
               who: 'Cartman',
@@ -65,6 +66,7 @@ describe('<Dashboard />', () => {
         reminders: {
           reminders: [
             {
+              id: '123',
               name: 'Buy KFC',
               when: '01/02/2023',
               who: 'Cartman',
@@ -73,6 +75,7 @@ describe('<Dashboard />', () => {
               done: false,
             },
             {
+              id: '124',
               name: 'Buy bread',
               when: '01/02/2023',
               who: 'Kenny',
@@ -81,6 +84,7 @@ describe('<Dashboard />', () => {
               done: false,
             },
             {
+              id: '125',
               name: 'Visit farm',
               when: '01/02/2023',
               who: 'Stan',
@@ -89,6 +93,7 @@ describe('<Dashboard />', () => {
               done: false,
             },
             {
+              id: '126',
               name: "TP Garisson's house :D",
               when: '01/02/2023',
               who: 'Cartman',

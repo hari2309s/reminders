@@ -26,7 +26,23 @@ describe('<ReminderCard />', () => {
   });
 
   test('clicking on Mark as done button dispatches action to update the reminder', () => {
-    const { store } = renderWithProviders(<ReminderCard {...reminderProps} />);
+    const { store } = renderWithProviders(<ReminderCard {...reminderProps} />, {
+      preloadedState: {
+        reminders: {
+          reminders: [
+            {
+              id: '128',
+              name: 'Buy milk',
+              when: '01/02/2023',
+              who: 'Cartman',
+              createdBy: 'Hari',
+              createdAt: new Date().getTime().toString(),
+              done: false,
+            },
+          ],
+        },
+      },
+    });
 
     store.dispatch = jest.fn();
 
