@@ -4,7 +4,7 @@ import { RootState } from '../../store';
 export interface Reminder {
   id: string;
   name: string;
-  when: string;
+  when: number;
   who: string;
   createdAt: string;
   createdBy: string;
@@ -31,7 +31,6 @@ export const remindersSlice = createSlice({
         (reminder) => reminder.id === action.payload
       );
       if (reminderIndex > -1) {
-        console.log('updating');
         state.reminders[reminderIndex].done = true;
       }
     },

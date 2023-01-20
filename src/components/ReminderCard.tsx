@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import * as React from 'react';
+import { useCountDownHook } from '../hooks/countDownHook';
 import {
   deleteReminder,
   Reminder,
@@ -10,7 +11,9 @@ import { useAppDispatch } from '../store/hooks';
 type ReminderCardProps = Reminder;
 
 const ReminderCard = (props: ReminderCardProps) => {
-  const { id, name, when, who, createdBy, done } = props;
+  const { id, name, when, who, done } = props;
+
+  const { countDown } = useCountDownHook(when);
 
   const dispatch = useAppDispatch();
 
@@ -24,10 +27,9 @@ const ReminderCard = (props: ReminderCardProps) => {
 
   return (
     <Card data-testid="reminder-card" done={done}>
+      <CountDown>in {countDown}</CountDown>
       <Title data-testid="reminder-name">{name}</Title>
-      <span>{when}</span>
-      <span>{who}</span>
-      <span>{createdBy}</span>
+      <Who>{who}</Who>
       <Divider />
       <Actions done={done}>
         <button
@@ -46,7 +48,7 @@ const ReminderCard = (props: ReminderCardProps) => {
 };
 
 const Card = styled.div<{ done: boolean }>((props) => ({
-  padding: '20px',
+  padding: '20px 20px 5px',
   borderRadius: '5px',
   backgroundColor: props.done ? 'rgba(97,83,68,0.7)' : '#F2D0A9',
   display: 'flex',
@@ -66,13 +68,22 @@ const Card = styled.div<{ done: boolean }>((props) => ({
   },
 }));
 
+const CountDown = styled.span({
+  alignSelf: 'end',
+});
+
 const Title = styled.span({
   fontWeight: 500,
   fontSize: 25,
+  alignSelf: 'start',
+});
+
+const Who = styled.span({
+  alignSelf: 'end',
 });
 
 const Divider = styled.div({
-  margin: '10px 0',
+  margin: '10px 0 5px',
   borderTop: '2px solid #796855',
 });
 

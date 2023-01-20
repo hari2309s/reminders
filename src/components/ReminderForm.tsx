@@ -4,6 +4,8 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { createReminder } from '../store/features/reminders/remindersSlice';
 import { useAppDispatch } from '../store/hooks';
 
+const participants = ['hari', 'cartman', 'kenny', 'stan'];
+
 interface FormValues {
   name: string;
   when: string;
@@ -32,6 +34,11 @@ const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
     dispatch(
       createReminder({
         ...formValues!,
+        when: (formValues?.when
+          ? new Date(formValues?.when)
+          : new Date()
+        ).getTime(),
+        who: formValues?.who ?? participants[0],
         createdAt: new Date().getTime().toString(),
         createdBy: 'Hari',
         id: uuidv4(),
@@ -76,22 +83,21 @@ const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
           <select
             id="who"
             name="who"
-            value={formValues?.who || ''}
+            value={formValues?.who ?? undefined}
             onChange={handleInputChange}
             data-testid="who-input"
           >
-            <option value="hari" data-testid="who-option" key="hari">
-              Hari
-            </option>
-            <option value="cartman" data-testid="who-option" key="cartman">
-              Cartman
-            </option>
-            <option value="kenny" data-testid="who-option" key="kenny">
-              Kenny
-            </option>
-            <option value="stan" data-testid="who-option" key="stan">
-              Stan
-            </option>
+            {participants.map((participant) => (
+              <option
+                value={participant}
+                data-testid="who-option"
+                key={participant}
+              >
+                {`${participant.charAt(0).toUpperCase()}${participant.substring(
+                  1
+                )}`}
+              </option>
+            ))}
           </select>
         </Field>
         <Divider />
