@@ -4,7 +4,7 @@ import noData from '../assets/no-data.png';
 
 const NoDataAvailable = () => {
   return (
-    <Container>
+    <Container data-testid="no-data">
       <img src={noData} alt="no-data" />
       <span>No reminders available!</span>
     </Container>

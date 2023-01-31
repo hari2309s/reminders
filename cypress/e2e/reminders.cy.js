@@ -1,6 +1,17 @@
 describe("Reminders application ", () => {
   it("opens dashboard ", () => {
     cy.visit("/");
+
+    // Tabs
+    cy.get('[data-testid="All-option"]').should("be.visible");
+    cy.get('[data-testid="Done-option"]').should("be.visible");
+    cy.get('[data-testid="Pending-option"]').should("be.visible");
+
+    // Create button
+    cy.get('[data-testid="create-button"]').should("be.visible");
+
+    // No data
+    cy.get('[data-testid="no-data"]').should("be.visible");
   });
 
   it("creates a new reminder ", () => {
