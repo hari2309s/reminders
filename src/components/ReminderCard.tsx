@@ -1,24 +1,25 @@
 import styled from '@emotion/styled';
-import * as React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useCountDownHook } from '../hooks/countDownHook';
 import {
-  deleteReminder,
   Reminder,
   updateReminder,
 } from '../store/features/reminders/remindersSlice';
 import { useAppDispatch } from '../store/hooks';
 
-type ReminderCardProps = Reminder;
+interface ReminderCardProps extends Reminder {
+  setShowDeleteModal: Dispatch<SetStateAction<string>>;
+}
 
 const ReminderCard = (props: ReminderCardProps) => {
-  const { id, name, when, who, done } = props;
+  const { id, name, when, who, done, setShowDeleteModal } = props;
 
   const { countDown } = useCountDownHook(when);
 
   const dispatch = useAppDispatch();
 
   const handleDelete = () => {
-    dispatch(deleteReminder(id));
+    setShowDeleteModal(id);
   };
 
   const handleDone = () => {
@@ -29,7 +30,7 @@ const ReminderCard = (props: ReminderCardProps) => {
     <Card data-testid="reminder-card" done={done}>
       <CountDown>in {countDown}</CountDown>
       <Title data-testid="reminder-name">{name}</Title>
-      <Who>{who}</Who>
+      <Who>{`${who.charAt(0).toUpperCase()}${who.substring(1)}`}</Who>
       <Divider />
       <Actions done={done}>
         <button
@@ -48,7 +49,7 @@ const ReminderCard = (props: ReminderCardProps) => {
 };
 
 const Card = styled.div<{ done: boolean }>((props) => ({
-  padding: '20px 20px 5px',
+  padding: '5px 20px',
   borderRadius: '5px',
   backgroundColor: props.done ? 'rgba(97,83,68,0.7)' : '#F2D0A9',
   display: 'flex',

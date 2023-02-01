@@ -12,16 +12,17 @@ import NoDataAvailable from './NoDataAvailable';
 import ReminderCard from './ReminderCard';
 import Tabs from './Tabs';
 import create from '../assets/create.png';
+import DeleteModal from './DeleteModal';
 
 const Dashboard = () => {
   const currentView = useAppSelector(selectView);
   const reminders = useAppSelector(selectReminders);
 
   const [isModalOpen, setIsModalOpen] = React.useState<boolean>(false);
-
   const [filteredReminders, setFilteredReminders] = React.useState<Reminder[]>(
     []
   );
+  const [showDeleteModal, setShowDeleteModal] = React.useState<string>('');
 
   React.useEffect(() => {
     let filtered;
@@ -60,13 +61,23 @@ const Dashboard = () => {
       {reminders.length > 0 ? (
         <Reminders>
           {filteredReminders.map((reminder: Reminder) => (
-            <ReminderCard key={reminder.id} {...reminder} />
+            <ReminderCard
+              key={reminder.id}
+              {...reminder}
+              setShowDeleteModal={setShowDeleteModal}
+            />
           ))}
         </Reminders>
       ) : (
         <NoDataAvailable />
       )}
       {isModalOpen && <CreateModal setIsOpen={setIsModalOpen} />}
+      {showDeleteModal && (
+        <DeleteModal
+          showDeleteModal={showDeleteModal}
+          setShowDeleteModal={setShowDeleteModal}
+        />
+      )}
     </Container>
   );
 };
@@ -82,6 +93,8 @@ const Container = styled.div({
 const Wrapper = styled.div({
   display: 'flex',
   justifyContent: 'center',
+  alignItems: 'center',
+  paddingBottom: '20px',
 });
 
 const Reminders = styled.div({
