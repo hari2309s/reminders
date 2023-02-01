@@ -60,6 +60,12 @@ describe("Reminders application ", () => {
 
     cy.get('[data-testid="delete-button"]').first().click();
 
+    cy.get('[data-testid="delete-modal-message"]').should(
+      "contain",
+      "Are you sure you want to delete?"
+    );
+    cy.get('[data-testid="yes-button"]').click();
+
     cy.get('[data-testid="reminder-card"]').should("have.length", 1);
     cy.get('[data-testid="reminder-name"]').should(
       "not.contain",

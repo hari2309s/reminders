@@ -24,15 +24,15 @@ const DeleteModal = ({
   };
 
   return (
-    <Container>
+    <Container data-testid="delete-modal">
       <Modal>
         <div>
-          <p>{`Are you sure you want to delete?`}</p>
+          <p data-testid="delete-modal-message">{`Are you sure you want to delete?`}</p>
           <Divider />
           <div>
             <Button
               type="button"
-              data-testid="no-button-dialog"
+              data-testid="no-button"
               backgroundColor="red"
               onClick={handleNoClick}
             >
@@ -40,7 +40,7 @@ const DeleteModal = ({
             </Button>
             <Button
               type="button"
-              data-testid="yes-button-dialog"
+              data-testid="yes-button"
               backgroundColor="green"
               onClick={handleYesClick}
             >
