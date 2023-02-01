@@ -67,7 +67,6 @@ const TabsGroup = styled.div({
   display: 'flex',
   justifyContent: 'center',
   borderRadius: '5px',
-  paddingBottom: '20px',
 
   '> button:nth-of-type(1)': {
     borderBottomLeftRadius: '5px',

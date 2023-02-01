@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { v4 as uuidv4 } from 'uuid';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { createReminder } from '../store/features/reminders/remindersSlice';
 import { useAppDispatch } from '../store/hooks';
 
@@ -17,7 +17,12 @@ interface ReminderFormProps {
 }
 
 const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
-  const [formValues, setFormValues] = useState<FormValues | null>(null);
+  const [formValues, setFormValues] = useState<FormValues>({
+    name: '',
+    when: '',
+    who: participants[0],
+  });
+  const [canCreate, setCanCreate] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
@@ -30,15 +35,23 @@ const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
     });
   };
 
+  useEffect(() => {
+    setCanCreate(!validateForm());
+  }, [formValues]);
+
+  const validateForm = (): boolean => {
+    return Object.values(formValues).some((value) => value === '');
+  };
+
   const handleCreate = () => {
     dispatch(
       createReminder({
         ...formValues!,
-        when: (formValues?.when
-          ? new Date(formValues?.when)
+        when: (formValues.when
+          ? new Date(formValues.when)
           : new Date()
         ).getTime(),
-        who: formValues?.who ?? participants[0],
+        who: formValues.who,
         createdAt: new Date().getTime().toString(),
         createdBy: 'Hari',
         id: uuidv4(),
@@ -62,7 +75,7 @@ const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
             id="name"
             name="name"
             type="text"
-            value={formValues?.name || ''}
+            value={formValues.name}
             onChange={handleInputChange}
             data-testid="name-input"
           />
@@ -73,7 +86,7 @@ const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
             id="when"
             name="when"
             type="date"
-            value={formValues?.when || ''}
+            value={formValues.when}
             onChange={handleInputChange}
             data-testid="when-input"
           />
@@ -83,7 +96,7 @@ const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
           <select
             id="who"
             name="who"
-            value={formValues?.who ?? undefined}
+            value={formValues.who}
             onChange={handleInputChange}
             data-testid="who-input"
           >
@@ -115,6 +128,7 @@ const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
             onClick={handleCreate}
             data-testid="create-button-form"
             backgroundColor="green"
+            disabled={!canCreate}
           >
             Create
           </Button>
@@ -169,12 +183,13 @@ const Button = styled.button<{ backgroundColor: string }>((props) => ({
   width: '80px',
   height: '30px',
   alignSelf: 'right',
-  cursor: 'pointer',
   backgroundColor: props.backgroundColor,
   border: 'none',
   borderRadius: '2px',
   color: 'white',
   marginLeft: '30px',
+  opacity: props.disabled ? '0.5' : 1,
+  cursor: 'pointer',
 }));
 
 export default ReminderForm;
