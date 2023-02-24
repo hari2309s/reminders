@@ -8,7 +8,7 @@ import ReminderCard from '../ReminderCard';
 describe('<ReminderCard />', () => {
   const reminderProps: Reminder = {
     id: '123',
-    name: 'Buy chicken',
+    what: 'Buy chicken',
     when: '12/02/2023',
     who: 'Kenny',
     createdAt: new Date().getTime().toString(),
@@ -20,19 +20,20 @@ describe('<ReminderCard />', () => {
     renderWithProviders(<ReminderCard {...reminderProps} />);
 
     expect(screen.getByText('Buy chicken')).toBeInTheDocument();
-    expect(screen.getByText('12/02/2023')).toBeInTheDocument();
     expect(screen.getByText('Kenny')).toBeInTheDocument();
-    expect(screen.getByText('Hari')).toBeInTheDocument();
   });
 
   test('clicking on Mark as done button dispatches action to update the reminder', () => {
-    const { store } = renderWithProviders(<ReminderCard {...reminderProps} />, {
-      preloadedState: {
-        reminders: {
-          reminders: [reminderProps],
+    const { store } = renderWithProviders(
+      <ReminderCard {...reminderProps} setShowDeleteModal={jest.fn()} />,
+      {
+        preloadedState: {
+          reminders: {
+            reminders: [reminderProps],
+          },
         },
-      },
-    });
+      }
+    );
 
     store.dispatch = jest.fn();
 

@@ -36,8 +36,8 @@
 //   }
 // }
 
-Cypress.Commands.add("createNewReminder", (name, when, who) => {
-  cy.get('[data-testid="name-input"]').type(name as string);
+Cypress.Commands.add("createNewReminder", (what, when, who) => {
+  cy.get('[data-testid="what-input"]').type(what as string);
   cy.get('[data-testid="when-input"]').type(when);
   cy.get('[data-testid="who-input"]').select(who);
 
@@ -48,7 +48,7 @@ declare global {
   namespace Cypress {
     interface Chainable {
       createNewReminder(
-        name: string,
+        what: string,
         when: string,
         who: string
       ): Chainable<void>;

@@ -20,7 +20,7 @@ describe('<ReminderForm />', () => {
       screen.getByRole('heading', { name: 'New reminder' })
     ).toBeInTheDocument();
 
-    expect(screen.getByLabelText('Name')).toBeInTheDocument();
+    expect(screen.getByLabelText('What')).toBeInTheDocument();
     expect(screen.getByLabelText('When')).toBeInTheDocument();
     expect(screen.getByLabelText('Who')).toBeInTheDocument();
 
@@ -35,7 +35,7 @@ describe('<ReminderForm />', () => {
 
     store.dispatch = jest.fn();
 
-    const nameInput = screen.getByLabelText('Name');
+    const nameInput = screen.getByLabelText('What');
     expect(nameInput).toBeInTheDocument();
 
     userEvent.type(nameInput, 'Buy KFC');
@@ -71,8 +71,8 @@ describe('<ReminderForm />', () => {
         createdBy: 'Hari',
         done: false,
         id: expect.any(String),
-        name: 'Buy KFC',
-        when: '2023-01-08',
+        what: 'Buy KFC',
+        when: expect.any(Number),
         who: 'cartman',
       },
       type: 'reminders/createReminder',

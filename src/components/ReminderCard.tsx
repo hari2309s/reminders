@@ -12,7 +12,7 @@ interface ReminderCardProps extends Reminder {
 }
 
 const ReminderCard = (props: ReminderCardProps) => {
-  const { id, name, when, who, done, setShowDeleteModal } = props;
+  const { id, what, when, who, done, setShowDeleteModal } = props;
 
   const { countDown } = useCountDownHook(when);
 
@@ -29,7 +29,7 @@ const ReminderCard = (props: ReminderCardProps) => {
   return (
     <Card data-testid="reminder-card" done={done}>
       <CountDown>in {countDown}</CountDown>
-      <Title data-testid="reminder-name">{name}</Title>
+      <Title data-testid="reminder-name">{what}</Title>
       <Who>{`${who.charAt(0).toUpperCase()}${who.substring(1)}`}</Who>
       <Divider />
       <Actions done={done}>

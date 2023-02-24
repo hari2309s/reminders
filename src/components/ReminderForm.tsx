@@ -7,7 +7,7 @@ import { useAppDispatch } from '../store/hooks';
 const participants = ['hari', 'cartman', 'kenny', 'stan'];
 
 interface FormValues {
-  name: string;
+  what: string;
   when: string;
   who: string;
 }
@@ -18,7 +18,7 @@ interface ReminderFormProps {
 
 const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
   const [formValues, setFormValues] = useState<FormValues>({
-    name: '',
+    what: '',
     when: '',
     who: participants[0],
   });
@@ -70,14 +70,14 @@ const ReminderForm = ({ setIsOpen }: ReminderFormProps) => {
       <h3>New reminder</h3>
       <form>
         <Field>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="what">What</label>
           <input
-            id="name"
-            name="name"
+            id="what"
+            name="what"
             type="text"
-            value={formValues.name}
+            value={formValues.what}
             onChange={handleInputChange}
-            data-testid="name-input"
+            data-testid="what-input"
           />
         </Field>
         <Field>

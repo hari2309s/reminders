@@ -3,7 +3,7 @@ import { RootState } from '../../store';
 
 export interface Reminder {
   id: string;
-  name: string;
+  what: string;
   when: number;
   who: string;
   createdAt: string;

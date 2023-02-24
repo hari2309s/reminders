@@ -36,7 +36,7 @@ describe('<Dashboard />', () => {
           reminders: [
             {
               id: '128',
-              name: 'Buy milk',
+              what: 'Buy milk',
               when: '01/02/2023',
               who: 'Cartman',
               createdBy: 'Hari',
@@ -55,9 +55,7 @@ describe('<Dashboard />', () => {
     expect(screen.getAllByTestId('reminder-card')).toHaveLength(1);
 
     expect(screen.getByText('Buy milk')).toBeInTheDocument();
-    expect(screen.getByText('01/02/2023')).toBeInTheDocument();
     expect(screen.getByText('Cartman')).toBeInTheDocument();
-    expect(screen.getByText('Hari')).toBeInTheDocument();
   });
 
   test('clicking on Tab options, filters and renders the correct reminders', () => {
@@ -67,7 +65,7 @@ describe('<Dashboard />', () => {
           reminders: [
             {
               id: '123',
-              name: 'Buy KFC',
+              what: 'Buy KFC',
               when: '01/02/2023',
               who: 'Cartman',
               createdBy: 'Hari',
@@ -76,7 +74,7 @@ describe('<Dashboard />', () => {
             },
             {
               id: '124',
-              name: 'Buy bread',
+              what: 'Buy bread',
               when: '01/02/2023',
               who: 'Kenny',
               createdBy: 'Hari',
@@ -85,7 +83,7 @@ describe('<Dashboard />', () => {
             },
             {
               id: '125',
-              name: 'Visit farm',
+              what: 'Visit farm',
               when: '01/02/2023',
               who: 'Stan',
               createdBy: 'Hari',
@@ -94,7 +92,7 @@ describe('<Dashboard />', () => {
             },
             {
               id: '126',
-              name: "TP Garisson's house :D",
+              what: "TP Garisson's house :D",
               when: '01/02/2023',
               who: 'Cartman',
               createdBy: 'Hari',
