@@ -47,8 +47,16 @@ Opens Cypress dashboard and you can run the tests from there.
 
 ### `npm run lint`
 
-To run the linter on the codebase.
+Runs linter on the codebase.
 
 ### `npm run prettify`
 
-To format the codebase based on prettier config.
+Formats the codebase based on prettier config.
+
+### `npm run predeploy`
+
+Builds the application as part of deployment and runs automatically beofre the deployment script.
+
+### `npm run deploy`
+
+Deploys the application to GitHub pages and can be accessed from [https://hari2309s.github.io/reminders](https://hari2309s.github.io/reminders)
