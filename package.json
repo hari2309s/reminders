@@ -1,5 +1,6 @@
 {
   "name": "reminders",
+  "homepage": "https://hari2309s.github.io/reminders",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
