@@ -35,6 +35,7 @@ const DeleteModal = ({
               data-testid="no-button"
               backgroundColor="red"
               onClick={handleNoClick}
+              style={{ marginLeft: 0 }}
             >
               No
             </Button>
@@ -62,7 +63,7 @@ const Container = styled.div({
   background: 'rgba(61, 77, 74, 0.5)',
 
   '> div': {
-    height: '150px',
+    height: '130px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -76,7 +77,6 @@ const Modal = styled.div({
   left: '50%',
   transform: 'translate(-50%, -50%)',
   borderRadius: '5px',
-  width: '350px',
   boxShadow: '0 5px 20px 0 rgba(0, 0, 0, 0.04)',
   background: '#F2D0A9',
   color: '#493e33',

@@ -23,7 +23,7 @@ describe("Reminders application ", () => {
 
     cy.createNewReminder("Buy milk", "2023-02-02", "cartman");
 
-    cy.get('[data-testid="reminder-name"]').should("contain", "Buy milk");
+    cy.get('[data-testid="reminder-title"]').should("contain", "Buy milk");
   });
 
   it("updates a reminder ", () => {
@@ -43,7 +43,7 @@ describe("Reminders application ", () => {
 
     cy.get('[data-testid="reminder-card"]').should("have.length", 1);
 
-    cy.get('[data-testid="reminder-name"]').should("contain", "Buy chicken");
+    cy.get('[data-testid="reminder-title"]').should("contain", "Buy chicken");
   });
 
   it("deletes a reminder and updates the list ", () => {
@@ -56,7 +56,7 @@ describe("Reminders application ", () => {
     cy.createNewReminder("Buy milk", "2023-02-02", "cartman");
 
     cy.get('[data-testid="reminder-card"]').should("have.length", 2);
-    cy.get('[data-testid="reminder-name"]').should("contain", "Buy chicken");
+    cy.get('[data-testid="reminder-title"]').should("contain", "Buy chicken");
 
     cy.get('[data-testid="delete-button"]').first().click();
 
@@ -67,7 +67,7 @@ describe("Reminders application ", () => {
     cy.get('[data-testid="yes-button"]').click();
 
     cy.get('[data-testid="reminder-card"]').should("have.length", 1);
-    cy.get('[data-testid="reminder-name"]').should(
+    cy.get('[data-testid="reminder-title"]').should(
       "not.contain",
       "Buy chicken"
     );

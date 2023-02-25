@@ -29,7 +29,7 @@ const ReminderCard = (props: ReminderCardProps) => {
   return (
     <Card data-testid="reminder-card" done={done}>
       <CountDown>in {countDown}</CountDown>
-      <Title data-testid="reminder-name">{what}</Title>
+      <Title data-testid="reminder-title">{what}</Title>
       <Who>{`${who.charAt(0).toUpperCase()}${who.substring(1)}`}</Who>
       <Divider />
       <Actions done={done}>

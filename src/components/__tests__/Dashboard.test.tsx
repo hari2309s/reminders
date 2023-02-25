@@ -37,7 +37,7 @@ describe('<Dashboard />', () => {
             {
               id: '128',
               what: 'Buy milk',
-              when: '01/02/2023',
+              when: 1696617000000,
               who: 'Cartman',
               createdBy: 'Hari',
               createdAt: new Date().getTime().toString(),
@@ -66,7 +66,7 @@ describe('<Dashboard />', () => {
             {
               id: '123',
               what: 'Buy KFC',
-              when: '01/02/2023',
+              when: 1696617000000,
               who: 'Cartman',
               createdBy: 'Hari',
               createdAt: new Date().getTime().toString(),
@@ -75,7 +75,7 @@ describe('<Dashboard />', () => {
             {
               id: '124',
               what: 'Buy bread',
-              when: '01/02/2023',
+              when: 1696617000000,
               who: 'Kenny',
               createdBy: 'Hari',
               createdAt: new Date().getTime().toString(),
@@ -84,7 +84,7 @@ describe('<Dashboard />', () => {
             {
               id: '125',
               what: 'Visit farm',
-              when: '01/02/2023',
+              when: 1696617000000,
               who: 'Stan',
               createdBy: 'Hari',
               createdAt: new Date().getTime().toString(),
@@ -93,7 +93,7 @@ describe('<Dashboard />', () => {
             {
               id: '126',
               what: "TP Garisson's house :D",
-              when: '01/02/2023',
+              when: 1696617000000,
               who: 'Cartman',
               createdBy: 'Hari',
               createdAt: new Date().getTime().toString(),
