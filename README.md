@@ -1,5 +1,15 @@
 # Reminders. For you, your family and friends.
 
+## Tech-stack
+
+- TypeScript
+- React
+- Redux Toolkit
+- Emotion
+- React Testing Library
+- Jest
+- Cypress
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -55,8 +65,8 @@ Formats the codebase based on prettier config.
 
 ### `npm run predeploy`
 
-Builds the application as part of deployment and runs automatically beofre the deployment script.
+Builds the application as part of deployment and runs automatically before the deployment script.
 
 ### `npm run deploy`
 
-Deploys the application to GitHub pages and can be accessed from [https://hari2309s.github.io/reminders](https://hari2309s.github.io/reminders)
+Deploys the application to GitHub pages and can be accessed from [Reminders](https://hari2309s.github.io/reminders)
