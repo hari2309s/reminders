@@ -95,6 +95,10 @@ const Wrapper = styled.div({
   justifyContent: 'center',
   alignItems: 'center',
   paddingBottom: '20px',
+
+  '@media (max-width: 580px)': {
+    flexDirection: 'column',
+  },
 });
 
 const Reminders = styled.div({
@@ -122,6 +126,10 @@ const CreateButton = styled.button({
     paddingRight: '10px',
     marginBottom: '-4px',
     color: 'white',
+  },
+
+  '@media (max-width: 580px)': {
+    marginTop: '30px',
   },
 });
 

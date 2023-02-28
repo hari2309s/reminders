@@ -61,6 +61,27 @@ const Tab = styled.button<{ active: boolean }>((props) => ({
     paddingRight: '10px',
     marginBottom: '-4px',
   },
+
+  '@media (max-width: 890px)': {
+    padding: '10px 40px',
+    fontSize: '18px',
+  },
+
+  '@media (max-width: 760px)': {
+    padding: '10px 30px',
+    fontSize: '18px',
+  },
+
+  '@media (max-width: 694px)': {
+    padding: '10px 25px',
+    fontSize: '18px',
+  },
+
+  '@media (min-width: 581px) and (max-width: 634px)': {
+    '> img': {
+      paddingRight: 0,
+    },
+  },
 }));
 
 const TabsGroup = styled.div({
